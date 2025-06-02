@@ -1,31 +1,30 @@
 @charset "UTF-8";
 
 .login-section {
-	margin-top: 50px;
 	display: flex;
 	justify-content: center;
+	margin-top: 120px;
 }
 
 .login-section > .dologin {
 	width: 380px;
 	display: flex;
 	justify-content: center;
-	border: 2px solid #A0ACAD;
-	border-radius: 10px;
-	height: 430px;
+	border: 1px solid #A0ACAD;
+	border-radius: 15px;
 }
 
 .login-section > .dologin .login-fieldset > .fieldset-legend {
 	font-family: Paperlogy-8ExtraBold;
 	font-size: 1.5rem;
 	color: #1D2F6F;
-	width: 300px;
-	border-bottom: 2px solid #A0ACAD;
-	padding: 10px;
+	width: 320px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.20);
+	padding-top: 20px;
 }
 
 .login-section > .dologin .login-fieldset .loginId {
-	margin-top: 15px;
+	margin-top: 20px;
 }
 
 .login-section > .dologin .login-fieldset div {
@@ -37,30 +36,35 @@
 	font-size: 1rem;
 	display: block;
 	padding: 7px 2px;
+	color: rgba(0, 0, 0, 0.50);
 }
 
 .login-section > .dologin .login-fieldset input {
 	width: 260px;
 	height: 35px;
-	border: 2px solid #A0ACAD;
+	border: 1px solid #A0ACAD;
 	border-radius: 3px;
 	display: block;
 	margin: 0 auto;
 }
 
 .login-section > .dologin .login-fieldset .dologin-box {
-	background-color: #1D2F6F;
-	border-radius: 3px;
-	margin: 10px auto;
-	width: 260px;
-	height: 40px;
+	margin: 20px auto 10px auto;
 	text-align: center;
 }
 
 .login-section > .dologin .login-fieldset .dologin-box > button {
+	background-color: #1D2F6F;
 	color: white;
 	font-size: 1rem;
-	line-height: 40px;
+	border-radius: 5px;
+	width: 260px;
+	height: 40px;
+}
+
+.login-section > .dologin .login-fieldset .dologin-box > button:hover {
+	background-color: #1B9AAA;
+	cursor: pointer;
 }
 
 .login-section > .dologin .login-fieldset .dosignup-box {
@@ -73,17 +77,24 @@
 	margin-bottom: -2.5px;
 }
 
+.login-section>.dologin .login-fieldset .dosignup-box {
+	margin-bottom: 40px;
+}
+
 .login-section>.dologin .login-fieldset .dosignup-box a {
+	text-align: center;
 	width: 260px;
 	height: 40px;
 	color: white;
 	font-size: 1rem;
-	border-radius: 3px;
+	border-radius: 5px;
 	display: block;
 	background-color: #1D2F6F;
-	text-align: center;
 	line-height: 40px;
-	margin-bottom: 10px;
+}
+
+.login-section>.dologin .login-fieldset .dosignup-box a:hover {
+	background-color: #1B9AAA;
 }
 
 .signup-section {
@@ -112,17 +123,18 @@
 	color: #1D2F6F;
 	width: 320px;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.20);
-	padding: 10px;
+	padding-top: 20px;
 }
 
 .signup-section > .signup-box .signup-fieldset .name-box {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
-.signup-section > .signup-box .signup-fieldset > .sex-box div {
+.signup-section > .signup-box .signup-fieldset > .sex-box .sex-select {
 	display: flex;
 	justify-content: space-between;
 	width: 260px;
+	color: #A0ACAD;
 }
 
 .signup-section > .signup-box .signup-fieldset > .sex-box button {
@@ -160,18 +172,17 @@
 }
 
 .signup-section > .signup-box .signup-fieldset .dosignup {
-	background-color: #1D2F6F;
-	border-radius: 5px;
 	text-align: center;
 	margin-top: 10px;
 }
 
 .signup-section > .signup-box .signup-fieldset .dosignup > .dosignup-btn {
+	background-color: #1D2F6F;
 	color: white;
 	font-size: 0.9rem;
-	line-height: 35px;
-	width: 260px;
-	height: 35px;
+	border-radius: 5px;
+	width: 257.34px;
+	height: 32.8px;
 }
 
 .signup-section > .signup-box .signup-fieldset .dosignup:hover .dosignup-btn {
@@ -186,25 +197,22 @@
 
 .signup-section > .signup-box .signup-fieldset .login-box > p {
 	font-size: 0.7rem;
-	margin-bottom: -2.5px;
-	margin-top: 7px;
+	margin: 7px 0 3px 3px;
 }
 
 .signup-section > .signup-box .signup-fieldset .login-box > .login-btn {
-	background-color: #1D2F6F;
-	border-radius: 5px;
 	text-align: center;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
 
 .signup-section > .signup-box .signup-fieldset .login-box > .login-btn > .dologin-btn {
+	background-color: #1D2F6F;
 	color: white;
 	font-size: 0.9rem;
-	line-height: 35px;
-	width: 260px;
-	height: 35px;
+	padding: 8px 110px;
+	border-radius: 5px;
 }
 
 .signup-section > .signup-box .signup-fieldset .login-box > .login-btn:hover {
 	background-color: #1B9AAA;
-	cursor: pointer;
+}

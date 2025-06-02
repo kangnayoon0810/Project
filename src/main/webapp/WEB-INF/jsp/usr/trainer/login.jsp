@@ -8,29 +8,31 @@
 <link rel="stylesheet" href="/resource/trainer.css" />
 <script src="/resource/trainer.js"></script>
 
-<section class="login">
-	<div class="login-box">
+<section class="login-section">
+	<div class="dologin">
 		<form action="doLogin" method="post"
 			onsubmit="return loginFormChk(this);">
-			<fieldset class="fieldset">
+			<fieldset class="login-fieldset">
 				<legend class="fieldset-legend">로그인</legend>
 
-				<div class="name-box">
-					<label>아이디</label> <input type="text" name="loginId" />
+				<div class="loginId">
+					<label>아이디</label> 
+					<input type="text" name="loginId" />
 				</div>
 
-				<div class="pw-box">
-					<label>비밀번호</label> <input type="password" name="loginPw" />
+				<div class="pw">
+					<label>비밀번호</label> 
+					<input type="password" name="loginPw" />
 				</div>
 
-				<div class="login-box">
+				<div class="dologin-box">
 					<button type="submit">로그인</button>
 				</div>
 
-				<div class="dosignup">
+				<div class="dosignup-box">
 					<p>회원이 아니신가요?</p>
-					<div class="dosignup-box">
-						<a href="/usr/member/join">회원가입</a> <a href="/usr/trainer/join">트레이너가입</a>
+					<div>
+						<a href="/usr/trainer/signup">트레이너 가입</a>
 					</div>
 				</div>
 			</fieldset>

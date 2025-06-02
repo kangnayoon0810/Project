@@ -21,8 +21,7 @@ public interface MemberDao {
 			     	, loginPw = #{loginPw}
 			     	, eMail = #{eMail}
 			""")
-	void signupMember(String name, int sex, String nickName, int phoneNumber, String loginId, String loginPw,
-			String eMail);
+	void signupMember(String name, int sex, String nickName, int phoneNumber, String loginId, String loginPw, String eMail);
 
 	@Select("""
 			SELECT *

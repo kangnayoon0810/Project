@@ -40,15 +40,14 @@
 			</div>
 			<div class="topbar-end">
 				<ul class="sign-box">
-					<%-- 					<c:if test="${req.getLoginedMember().getId() == 0 }"> --%>
-					<li><a href="/usr/prompt/selectLogin">로그인</a></li>
-					<li><a class="member-signup" href="/usr/member/signup">회원가입</a></li>
-					<li><a class="tranier-signup" href="/usr/trainer/signup">트레이너
-							가입</a></li>
-					<%-- 					</c:if> --%>
-					<%-- 					<c:if test="${req.getLoginedMember().getId() != 0 }"> --%>
-					<li><a class="logout-button" href="/usr/member/logout">Logout</a></li>
-					<%-- 					</c:if> --%>
+					<c:if test="${req.getLoginedMember().getId() != 0 }">
+						<li><a class="login-button" href="/usr/prompt/selectLogin">로그인</a></li>
+						<li><a class="member-signup" href="/usr/member/signup">회원가입</a></li>
+						<li><a class="tranier-signup" href="/usr/trainer/signup">트레이너 가입</a></li>
+					</c:if>
+					<c:if test="${req.getLoginedMember().getId() == 0 }">
+						<li><a class="logout-button" href="/usr/member/logout">Logout</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

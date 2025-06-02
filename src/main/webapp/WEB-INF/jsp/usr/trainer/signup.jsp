@@ -12,46 +12,47 @@
 	<div class="signup-box">
 		<form action="doSignUp" method="POST" onsubmit="return signupFormChk(this);">
 			<fieldset class="signup-fieldset">
-				<legend class="fieldset-legend">회원가입</legend>
+				<legend class="fieldset-legend">트레이너가입</legend>
 
 				<div class="name-box">
-					<label>이름</label> <input type="text" name="name" />
+					<label>이름</label> 
+					<input type="text" name="name" />
 				</div>
 
 				<div class="sex-box">
 					<label>성별</label>
 					<div class="sex-select">
-						<button type="button" class="sex-btn"
-							onclick="selectSex(this, '0')">남자</button>
-						<button type="button" class="sex-btn"
-							onclick="selectSex(this, '1')">여자</button>
+						<button type="button" class="sex-btn" onclick="selectSex(this, '0')">남자</button>
+						<button type="button" class="sex-btn" onclick="selectSex(this, '1')">여자</button>
 						<input type="hidden" name="sex" id="sexInput" />
 					</div>
 				</div>
 
 				<div class="phoneNumber-box">
-					<label>핸드폰 번호<span id="phoneNumberDupChkMsg"></span></label> <input
-						type="text" name="phoneNumber" onblur="phoneNumberDupChk(this);" />
+					<label>핸드폰 번호<span id="phoneNumberDupChkMsg"></span></label> 
+					<input type="text" name="phoneNumber" onblur="phoneNumberDupChk(this);" />
+					<input type="hidden" name="phoneNumberChk" />
 				</div>
 
 				<div class="id-box">
-					<label>아이디<span id="loginIdDupChkMsg"></span></label> <input
-						type="text" name="loginId" onblur="loginIdDupChk(this);" />
+					<label>아이디<span id="loginIdDupChkMsg"></span></label> 
+					<input type="text" name="loginId" onblur="loginIdDupChk(this);" />
 				</div>
 
 				<div class="pw-box">
-					<label>비밀번호</label> <input type="password" name="loginPw"
-						autocomplete="new-password off" />
+					<label>비밀번호</label> 
+					<input type="password" name="loginPw" />
 				</div>
 
 				<div class="pwchk-box">
-					<label>비밀번호 확인</label> <input type="password" name="loginPwChk"
-						autocomplete="new-password off" />
+					<label>비밀번호 확인</label> 
+					<input type="password" name="loginPwChk" />
 				</div>
 
 				<div class="email-box">
-					<label>이메일<span id="eMailDupChkMsg"></span></label> <input
-						type="email" name="eMail" onblur="eMailDupChk(this);" />
+					<label>이메일<span id="eMailDupChkMsg"></span></label> 
+					<input type="email" name="eMail" onblur="eMailDupChk(this);" />
+					<input type="hidden" name="eMailChk" />
 				</div>
 
 				<div class="dosignup">
@@ -61,7 +62,7 @@
 				<div class="login-box">
 					<p>회원이신가요?</p>
 					<div class="login-btn">
-						<button class="dologin-btn" type="submit">로그인</button>
+						<a class="dologin-btn" href="/usr/prompt/selectLogin">로그인</a>
 					</div>
 				</div>
 			</fieldset>

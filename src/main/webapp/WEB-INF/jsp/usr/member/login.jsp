@@ -30,8 +30,7 @@
 				<div class="dosignup-box">
 					<p>회원이 아니신가요?</p>
 					<div>
-						<a href="/usr/member/join">회원 가입</a> <a href="/usr/trainer/join">트레이너
-							가입</a>
+						<a href="/usr/member/signup">회원 가입</a>
 					</div>
 				</div>
 			</fieldset>
