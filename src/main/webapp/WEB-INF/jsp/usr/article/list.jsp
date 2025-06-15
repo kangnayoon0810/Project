@@ -6,77 +6,111 @@
 
 <%@ include file="/WEB-INF/jsp/common/header.jsp"%>
 
-<%-- <section class="mt-8">
-	<div class="container mx-auto">
-		<div class="flex w-2/3 mx-auto place-content-between place-items-center mb-3 mt-3">
-			<div class="theme">
-				<div><span>${board.getBoardName() }</span><span> ( ${articlesCnt } )</span></div>
+<script src="/resource/article.js"></script>
+
+<section class="list-section">
+	<div class="list-box">
+		<div class="search-box">
+			<div class="memberCategory">
+				<c:if test="${memberCategory == 1 }">
+					<div>회원 커뮤니티</div>
+				</c:if>
+				<c:if test="${memberCategory == 2 }">
+					<div>트레이너 커뮤니티</div>
+				</c:if>
 			</div>
 			<form action="list" method="get">
-				<div class="join">
-					<div>
+				<div class="search-bar">
+					<div class="search">
 						<div>
-							<input type="hidden" name="boardId" value="${board.getId() }"/>
-							<input name="keyWord" value="${keyWord }" class="input join-item w-50" placeholder="Search" />
+							<div>
+								<input type="hidden" name="boardId" value="${board.getId() }"/>
+								<input type="text" name="keyWord" value="${keyWord }" placeholder="검색어를 입력하세요" />
+							</div>
 						</div>
 					</div>
-					<select class="select join-item" name="searchType">
-						<option value="titleContent" <c:if test="${searchType == 'titleContent' }">selected</c:if>>Post</option>
-						<option value="title" <c:if test="${searchType == 'title' }">selected</c:if>>Title</option>
-						<option value="content" <c:if test="${searchType == 'content' }">selected</c:if>>Content</option>
-					</select>
-					<div class="indicator">
-						<button class="btn join-item"><i class="fa-solid fa-magnifying-glass"></i></button>
+					<div class="search-btn">
+						<button><i class="fa-solid fa-magnifying-glass"></i></button>
 					</div>
 				</div>
 			</form>
 		</div>
 		<div class="table-box">
-			<div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-2/3 mx-auto">
-				<table class="table">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>좋아요</th>
-						<th>조회수</th>
-					</tr>
+			<div class="article-box2">
+				<c:if test="${memberCategory == 1 }">
 					<c:forEach items="${articles }" var="article">
-						<tr>
-							<td>${article.getId() }</td>
-							<td class="hover:underline underline-offset-4"><a href="detail?id=${article.getId() }">${article.getTitle() }</a></td>
-							<td>${article.getLoginId() }</td>
-							<td>${article.getRegDate().substring(2, 16) }</td>
-							<td>${article.getLikeCnt() }</td>
-							<td>${article.getViewCnt() }</td>
-						</tr>
+						<div class="profile-box">
+							<div><img src="${article.authorMember.profileImageUrl}" alt="프로필" /></div>
+							<div class="nickname">${article.getNickName() }</div>
+						</div>
+						<style>
+							p > img {
+								width: 200px;
+								height: 200px;
+							}
+						</style>
+						<div class="content-box">
+							<div class="content">${article.getContent() }</div>
+						</div>
+						<div class="cnt-box">
+							<div class="like">
+								<button>
+									<i class="fa-regular fa-heart"></i>
+									<span id="likePointCnt"></span>
+									${article.getLikeCnt() }
+								</button>
+							</div>
+							<a class="comments" href="/usr/article/detail?id=${article.getId() }"><i class="fa-regular fa-comment"></i></a>
+							<span id="commentCnt">&nbsp;${article.getCommentCnt() }</span>
+							<div class="views">조회수 ${article.getViewCnt() }</div>
+						</div>
+						<div class="date-box">
+							<div class="date">${article.getRegDate().substring(2, 16) }</div>
+						</div>
 					</c:forEach>
-				</table>
+				</c:if>
+				<c:if test="${memberCategory == 2 }">
+					<c:forEach items="${articles }" var="article">
+						<div class="profile-box">
+							<div><img src="${article.authorMember.profileImageUrl}" alt="프로필" /></div>
+							<div class="nickname">${article.getNickName() }</div>
+						</div>
+						<div class="content-box">
+							<div class="content">${article.getContent() }</div>
+						</div>
+						<div class="cnt-box">
+							<div class="like">
+								<button>
+									<i class="fa-regular fa-heart"></i>
+									<span id="likePointCnt"></span>
+									${article.getLikeCnt() }
+								</button>
+							</div>
+							<a class="comments" href="/usr/article/detail?id=${article.getId() }"><i class="fa-regular fa-comment"></i></a>
+							<span id="commentCnt">&nbsp;${article.getCommentCnt() }</span>
+							<div class="views">조회수 ${article.getViewCnt() }</div>
+						</div>
+						<div class="date-box">
+							<div class="date">${article.getRegDate().substring(2, 16) }</div>
+						</div>
+					</c:forEach>
+				</c:if>
+				
+			<div class="bt-bar">
+				<c:if test="${req.getLoginedMember().getAuthLevel() == 1 && board.getId() != 2 }">
+					  <!-- 회원이 트레이너 커뮤니티가 아닐 때만 -->
+					  <a href="/usr/article/write?boardId=${board.getId() }&memberCategory=${memberCategory }" class="write-btn-fixed"><i class="fa-solid fa-pen"></i>&nbsp;&nbsp;글쓰기</a>
+				</c:if>
+				<c:if test="${req.getLoginedMember().getAuthLevel() == 2 && board.getId() != 1 }">
+					  <!-- 트레이너가 회원 커뮤니티가 아닐 때만 -->
+					  <a href="/usr/article/write?boardId=${board.getId() }&memberCategory=${memberCategory }" class="write-btn-fixed"><i class="fa-solid fa-pen"></i>&nbsp;&nbsp;글쓰기</a>
+				</c:if>
+			</div>
+				
 			</div>
 		</div>
 		
-		<div class="bt-bar">
-			<div class="mt-3 text-sm btns w-2/3 mx-auto">
-				<c:if test="${req.getLoginedMember().getId() != 0 }">
-					<c:choose>
-						<c:when test="${req.getLoginedMember().getAuthLevel() == 0 }">
-							<div>
-								<a class="btn btn-ghost" href="write">글쓰기</a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<c:if test="${board.getId() != 1 }">
-								<div>
-									<a class="btn btn-ghost" href="write">글쓰기</a>
-								</div>
-							</c:if>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
-			</div>
-			
-			<div class="mb-8 mt-4 w-2/3 mx-auto text-center">
+			<%-- <div class="mb-8 mt-4 w-2/3 mx-auto text-center">
 				<div class="join">
 					<c:set var="queryString" value="?boardId=${board.getId() }&keyWord=${keyWord }&searchType=${searchType }" />
 					
@@ -92,9 +126,10 @@
 						<a class="join-item btn btn-sm" href="${queryString }&cPage=${pagesCnt }"><i class="fa-solid fa-angles-right"></i></a>
 					</c:if>
 				</div>
-			</div>
-		</div>
+			</div> --%>
+		
 	</div>
-</section> --%>
+</section>
+
 
 <%@ include file="/WEB-INF/jsp/common/footer.jsp"%>

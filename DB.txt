@@ -13,55 +13,25 @@ CREATE TABLE `member` (
   , regDate DATETIME NOT NULL
   , updateDate DATETIME NOT NULL
   , `name` VARCHAR(50) NOT NULL
+  , sex INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '남자 = 0, 여자 = 1'
   , nickName VARCHAR(50) UNIQUE NOT NULL
   , phoneNumber INT UNSIGNED UNIQUE NOT NULL
   , loginId VARCHAR(50) UNIQUE NOT NULL
   , loginPw VARCHAR(100) NOT NULL
   , eMail VARCHAR(50) UNIQUE NOT NULL
-  , authLevel INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '관리자는 = 0, 회원 = 1'
+  , authLevel INT UNSIGNED NOT NULL COMMENT '관리자는 = 0, 회원 = 1, 트레이너 = 2'
 );
 
-CREATE TABLE trainer (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
-  , regDate DATETIME NOT NULL
-  , updateDate DATETIME NOT NULL
-  , `name` VARCHAR(50) NOT NULL
-  , phoneNumber INT UNSIGNED UNIQUE NOT NULL
-  , loginId VARCHAR(50) UNIQUE NOT NULL
-  , loginPw VARCHAR(100) NOT NULL
-  , eMail VARCHAR(50) UNIQUE NOT NULL
-);
-
-CREATE TABLE memberArticle (
+CREATE TABLE article (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
   , boardId INT UNSIGNED NOT NULL
   , regDate DATETIME NOT NULL
   , updateDate DATETIME NOT NULL
   , memberId INT UNSIGNED NOT NULL
-  , title VARCHAR(50) NOT NULL
   , content TEXT NOT NULL
+  , `area` VARCHAR(50)
   , viewCnt INT UNSIGNED NOT NULL DEFAULT 0
-);
-
-CREATE TABLE trainerArticle (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
-  , boardId INT UNSIGNED NOT NULL
-  , regDate DATETIME NOT NULL
-  , updateDate DATETIME NOT NULL
-  , memberId INT UNSIGNED NOT NULL
-  , title VARCHAR(50) NOT NULL
-  , content TEXT NOT NULL
-  , viewCnt INT UNSIGNED NOT NULL DEFAULT 0
-);
-
-CREATE TABLE `comment` (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
-  , regDate DATETIME NOT NULL
-  , updateDate DATETIME NOT NULL
-  , memberId INT UNSIGNED NOT NULL
-  , relTypeCode VARCHAR(20) NOT NULL
-  , relId INT UNSIGNED NOT NULL
-  , content TEXT NOT NULL
+  , memberCategory INT UNSIGNED NOT NULL COMMENT '관리자는 = 0, 회원 = 1, 트레이너 = 2'
 );
 
 CREATE TABLE likePoint (
@@ -69,3 +39,107 @@ CREATE TABLE likePoint (
   , relTypeCode VARCHAR(20) NOT NULL
   , relId INT UNSIGNED NOT NULL
 );
+
+CREATE TABLE comments (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+  , regDate DATETIME NOT NULL
+  , updateDate DATETIME NOT NULL
+  , memberId INT UNSIGNED NOT NULL
+  , relTypeCode VARCHAR(20) NOT NULL
+  , relId INT UNSIGNED NOT NULL
+  , content TEXT NOT NULL
+);
+
+CREATE TABLE `file` (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , regDate DATETIME NOT NULL
+    , originName VARCHAR(50) NOT NULL
+    , savedName VARCHAR(100) NOT NULL
+    , savedPath VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE `profile`(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , memberId INT UNSIGNED NOT NULL
+    , profileImageId INT
+    , intro TEXT
+    , address TEXT
+    , tag VARCHAR(100)
+);
+
+CREATE TABLE trainer_info (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , memberId INT UNSIGNED NOT NULL
+    , gymName VARCHAR(100)
+    , career TEXT
+    , license TEXT
+    , availableRegion VARCHAR(100)
+);
+
+INSERT INTO board SET boardName = 'memberArticle';
+INSERT INTO board SET boardName = 'trainerArticle';
+
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , `name` = '강나윤 '
+        , nickName = '재이'
+        , phoneNumber = 01012341234
+        , loginId = '7skdbs'
+        , loginPw = '1111'
+        , eMail = '7skdbs@naver.com'
+        , authLevel = 1;
+        
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , `name` = '야옹이 '
+        , nickName = '호이'
+        , phoneNumber = 1045674567
+        , loginId = 'skdbs7'
+        , loginPw = '1111'
+        , eMail = 'skdbs7@naver.com'
+        , authLevel = 2;
+        
+INSERT INTO article
+    SET boardId = 1
+        , regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 1
+        , content = '테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글 테스트용 게시글'
+        , viewCnt = 0
+        , memberCategory = 1;
+        
+INSERT INTO article
+    SET boardId = 2
+        , regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 2
+        , content = '테스트용 게시글'
+        , viewCnt = 0
+        , memberCategory = 2;
+
+INSERT INTO comments (regDate, updateDate, memberId, relTypeCode, relId, content)
+VALUE (NOW(), NOW(), 2, 'article', 1, '테스트용 댓글')
+      , (NOW(), NOW(), 1, 'article', 1, '테스트용 댓글')
+      , (NOW(), NOW(), 2, 'article', 2, '테스트용 댓글')
+      , (NOW(), NOW(), 1, 'article', 3, '테스트용 댓글')
+      , (NOW(), NOW(), 2, 'article', 3, '테스트용 댓글');
+
+INSERT INTO `file` (regDate, originName, savedName, savedPath
+) VALUES (NOW(), 'default-profile.jpg', 'default-profile.jpg', '/gen/');
+
+DROP TABLE `file`;
+
+SELECT * FROM board;
+SELECT * FROM  article;
+SELECT * FROM comments;
+SELECT * FROM `file`;
+SELECT * FROM `profile`;
+SELECT * FROM trainer_info;
+
+SELECT m.id, m.nickname, p.profileImageId 
+    FROM `member` m
+    INNER JOIN `profile`p
+    ON m.id = p.memberId
+    WHERE m.id = 1;

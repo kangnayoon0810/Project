@@ -1,7 +1,5 @@
 package com.example.project.dto;
 
-import com.example.project.dto.Board;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board {
+public class Profile {
 	private int id;
-	private String boardName;
+	private int memberId;
+	private Integer profileImageId;
+	private String intro;
+	private String address;
+	private String tag;
 }

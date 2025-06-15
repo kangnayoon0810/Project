@@ -20,8 +20,9 @@ public interface MemberDao {
 			     	, loginId = #{loginId}
 			     	, loginPw = #{loginPw}
 			     	, eMail = #{eMail}
+			     	, authLevel = #{authLevel}
 			""")
-	void signupMember(String name, int sex, String nickName, int phoneNumber, String loginId, String loginPw, String eMail);
+	void signupMember(String name, int sex, String nickName, int phoneNumber, String loginId, String loginPw, String eMail, int authLevel);
 
 	@Select("""
 			SELECT *
@@ -52,11 +53,33 @@ public interface MemberDao {
 	Member getMemberByEMail(String eMail);
 
 	@Select("""
+			SELECT nickName
+				FROM `member`
+				WHERE id = #{id}
+			""")
+	String getLoginId(int id);
+	
+	@Select("""
 			SELECT *
 				FROM `member`
-				WHERE loginId = #{loginId}
-				AND loginPw = #{loginPw}
+				WHERE authLevel = #{authLevel}
 			""")
-	Member loginedMemberId(String loginId, String loginPw);
+	Member getMemberByAuthLevel(int authLevel);
+
+	@Select("""
+			SELECT nickName
+				FROM `member`
+				WHERE nickName = #{nickName}
+			""")
+	String getNickName(String nickName);
+
+	@Select("""
+			SELECT m.*, p.profileImageId 
+			 	FROM `member` m
+			 	INNER JOIN `profile`p
+			 	ON m.id = p.memberId
+			 	WHERE m.id = #{id};
+			""")
+	Member getMemberById(int id);
 
 }

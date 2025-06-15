@@ -21,4 +21,6 @@ public class Member {
 	private String loginPw;
 	private String eMail;
 	private int authLevel;
+	private String profileImageUrl;
+	private Integer profileImageId;
 }
