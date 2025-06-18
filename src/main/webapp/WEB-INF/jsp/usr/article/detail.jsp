@@ -5,6 +5,7 @@
 <c:set var="pageTitle" value="Detail Content View" />
 
 <%@ include file="/WEB-INF/jsp/common/header.jsp"%>
+<link rel="stylesheet" href="/resource/article.css" />
 
 <script src="/resource/article.js"></script>
 
@@ -165,7 +166,7 @@ const getComments = function () {
 					<div class="cm-header">
 						<div class="cm-writer">
 							<div class="cm-profile">
-							<img src="${data.authorMember.profileImageUrl}" alt="댓글 작성자 이미지" />
+								<div><img src="/usr/profile/image/\${data[idx].profileId }" alt="프로필" /></div>
 								<div class="cm-nickname">\${data[idx].nickName}</div>
 							</div>
 							\${btnHtml}
@@ -205,7 +206,7 @@ const addComments = function (id, method) {
 						<div class="cm-header">
 							<div class="cm-writer">
 								<div class="cm-profile">
-									<img src="\${data.authorMember.profileImageUrl || '/gen/default-profile.jpg'}" alt="댓글 작성자 이미지" />
+									<div><img src="/usr/profile/image/\${data.profileId }" alt="프로필" /></div>
 									<div class="cm-nickname">\${data.nickName}</div>
 								</div>
 								<ul>
@@ -329,7 +330,7 @@ const commentModifyCancle = function(id) {
 			<div class="article-detailbox">
 				<div class="profile-detailbox">
 					<div class="profile-detailbox2">
-						<div><img src="${article.authorMember.profileImageUrl}" alt="프로필" /></div>
+						<div><img src="/usr/profile/image/${article.getProfileId() }" alt="프로필" /></div>
 						<div class="nickname">${article.getNickName() }</div>
 					</div>
 					<div class="detail-modify">

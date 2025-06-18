@@ -1,11 +1,10 @@
 package com.example.project.dao;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.project.dto.Profile;
+import com.example.project.dto.ProfileDto;
 
 @Mapper
 public interface ProfileDao {
@@ -15,23 +14,27 @@ public interface ProfileDao {
 			   FROM `profile`
 			   WHERE memberId = #{id}
 			""")
-	Profile getProfileByMemberId(int id);
+	ProfileDto getProfileByMemberId(int id);
 
-	@Insert("""
-			INSERT INTO profile
-				  SET memberId = #{memberId}
-				  		, profileImageId = #{profileImageId}
-				  		, intro = ''
-				  		, address = ''
-				  		, tag = ''
-			""")
-	void insertDefaultProfile(Profile profile);
-	
 	@Update("""
-			UPDATE profile
-				SET profileImageId = #{fileId}
-				WHERE memberId = #{loginedMemberId}
+			UPDATE `profile`
+			 	SET profileImagePath = #{profileImagePath}
+			    WHERE memberId =  #{memberId}
 			""")
-	void updateProfileImageId(int loginedMemberId, int fileId);
+	void updateProfileImg(String profileImagePath, int memberId);
+
+	@Select("""
+			SELECT *
+				FROM profile
+				WHERE id = #{id}
+			""")
+	ProfileDto getProfileById(int id);
+
+	@Update("""
+			UPDATE `profile`
+			 	SET intro = #{intro}
+			 	WHERE memberId = #{memberId}
+			""")
+	void modifyInfo(int memberId, String intro);
 
 }

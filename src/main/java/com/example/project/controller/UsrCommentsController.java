@@ -10,21 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dto.Comments;
-import com.example.project.dto.Member;
 import com.example.project.dto.Req;
 import com.example.project.service.CommentsService;
-import com.example.project.service.MemberService;
 
 @Controller
 public class UsrCommentsController {
 
 	private CommentsService commentsService;
-	private MemberService memberService;
 	private Req req;
 
-	public UsrCommentsController(CommentsService commentsService, MemberService memberService, Req req) {
+	public UsrCommentsController(CommentsService commentsService, Req req) {
 		this.commentsService = commentsService;
-		this.memberService = memberService;
 		this.req = req;
 	}
 
@@ -47,15 +43,9 @@ public class UsrCommentsController {
 	@ResponseBody
 	public List<Comments> list(Model model, @RequestParam int relId, @RequestParam String relTypeCode) {
 
-		List<Comments> comment = this.commentsService.getComments(relId, relTypeCode);
+		List<Comments> comments = this.commentsService.getComments(relId, relTypeCode);
 		
-		for (Comments comments : comment) {
-	        Member authorMember = memberService.getMemberById(comments.getMemberId());
-	        memberService.setProfileImageUrl(authorMember); // 🔥 여기서 이미지 URL 세팅
-	        comments.setAuthorMember(authorMember);
-	    }
-
-	    return comment;
+		return comments;
 	}
 
 	@PostMapping("/usr/comments/delete")

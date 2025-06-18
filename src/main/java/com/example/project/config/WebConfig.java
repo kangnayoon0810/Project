@@ -1,3 +1,4 @@
+
 package com.example.project.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -36,15 +37,5 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addInterceptor(needLogoutInterceptor).addPathPatterns("/usr/member/signup")
 				.addPathPatterns("/usr/member/login").addPathPatterns("/usr/member/doLogin");
 	}
-	
-	 @Value("${custom.file.dir}")
-	    private String fileDir;
-
-	    @Override
-	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	        // /gen/으로 시작하는 URL 요청을 실제 로컬 폴더와 연결
-	        registry.addResourceHandler("/gen/**")
-	                .addResourceLocations("file:///" + fileDir + "/");
-	    }
 
 }

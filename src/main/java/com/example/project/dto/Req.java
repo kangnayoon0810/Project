@@ -57,8 +57,4 @@ public class Req {
 			e.printStackTrace();
 		}
 	}
-
-	public boolean isLogined() {
-		return loginedMember != null;
-	}
 }

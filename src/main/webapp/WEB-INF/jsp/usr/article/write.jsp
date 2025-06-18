@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 
-
 <%@ include file="/WEB-INF/jsp/common/header.jsp"%>
+<link rel="stylesheet" href="/resource/article.css" />
 
 <style>
     /* OK 버튼 */
@@ -74,7 +74,7 @@
 				<input type="hidden" name="content" />
 				<div class="profile-writebox">
 					<div class="profile-writebox2">
-						<div><img src="${profileImageUrl}" alt="프로필" /></div>
+						<div><img src="/usr/profile/image/${profile.getId() }" alt="프로필" /></div>
 						<div class="nickname">${req.getLoginedMember().getNickName()}</div>
 					</div>
 					<button class="save-btn" type="submit">저장</button>

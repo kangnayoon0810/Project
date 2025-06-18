@@ -22,6 +22,6 @@ public class Article {
 	private int likeCnt;
 	private int commentCnt;
 	private String nickName;
-	private Member authorMember;
-
+	private int profileId;
+	private String eMail;
 }

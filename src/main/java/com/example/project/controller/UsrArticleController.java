@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.project.dto.Article;
 import com.example.project.dto.Board;
-import com.example.project.dto.Member;
 import com.example.project.dto.Req;
 import com.example.project.service.ArticleService;
 import com.example.project.service.BoardService;
@@ -76,17 +75,6 @@ public class UsrArticleController {
 		Board board = this.boardService.getBoard(boardId);
 		List<Article> articles = this.articleService.getArticles(keyWord, boardId, articlesInPage, limitFrom);
 		
-		for (Article article : articles) {
-			Member authorMember = memberService.getMemberById(article.getMemberId());
-
-			if (authorMember != null) {
-			    memberService.setProfileImageUrl(authorMember);
-			    article.setAuthorMember(authorMember);
-			}
-
-		}
-
-		
 		model.addAttribute("memberCategory", memberCategory);
 		model.addAttribute("keyWord", keyWord);
 		model.addAttribute("cPage", cPage);
@@ -123,13 +111,6 @@ public class UsrArticleController {
 		}
 		
 		Article article = this.articleService.getArticleById(id);
-
-		Member authorMember = memberService.getMemberById(article.getMemberId());
-
-		if (authorMember != null) {
-		    memberService.setProfileImageUrl(authorMember);
-		    article.setAuthorMember(authorMember);
-		}
 		
 		model.addAttribute("article", article);
 
@@ -140,13 +121,6 @@ public class UsrArticleController {
 	public String modify(Model model, int id) {
 
 		Article article = this.articleService.getArticleById(id);
-		
-		int loginedMemberId = req.getLoginedMember().getId();
-		
-		Member authorMember = memberService.getMemberById(loginedMemberId);
-		
-		memberService.setProfileImageUrl(authorMember);
-		article.setAuthorMember(authorMember);
 
 		model.addAttribute("article", article);
 

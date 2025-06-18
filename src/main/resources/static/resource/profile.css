@@ -7,62 +7,86 @@
 }
 
 .start-greetings {
-	width: 60%;
-	height: 50px;
+	width: 40%;
+	height: 60px;
 	margin: 0 auto;
-	border: 1px solid pink;
-	margin-bottom: 10px;
+/* 	border: 1px solid pink; */
 	text-align: center;
 	font-family: Paperlogy-8ExtraBold;
 	color: #1B9AAA;
 	font-size: 1.6rem;
-	line-height: 50px;
+	line-height: 60px;
 	word-spacing: 10px
 }
 .start-greetings > span {
 	color: black;
+/* 	font-family: 'PyeojinGothic-Bold'; */
 }
 
 .myprofile-box {
-	width: 60%;
-	height: 700px;
-	border: 1px solid red;
+	width: 40%;
+	height: 550px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	margin: 0 auto;
+	border-radius: 30px;
+	box-shadow: 0 2px 3px #A0ACAD;
+	display: flex;
+}
+
+@media (max-width: 1300px) {
+	.myprofile-box {
+	max-width: none;
+	width: 600px;
+	}
 }
 
 .chg-profile {
-	width: 300px;
-	height: 300px;
-	border: 1px solid blue;
-	margin: 40px 30px 20px 30px;
+	display: flex;
+	margin: 40px 0 0 50px;
+}
+
+.my-img {
+	margin: 30px;
+}
+
+.my-img label {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	width: 250px;
+	height: 250px;
 }
 
 .my-img img {
 	border-radius: 50%;
-	margin: 25px;
-}
-
-.image-label {
-	position: relative;
-	display: inline-block;
 	width: 250px;
 	height: 250px;
-	cursor: pointer;
+	object-fit: cover;
+	border: 5px solid #DDDBCB;
 }
 
-.image-label img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
+@media (max-width: 1300px) {
+	.my-img label {
+		max-width: none;
+		width: 200px;
+		height: 200px;
+	}
+}
+
+@media (max-width: 1300px) {
+	.my-img img {
+		max-width: none;
+		width: 200px;
+		height: 200px;
+	}
 }
 
 /* ✅ 이미지 위에 투명 회색 오버레이 + 텍스트 */
-.image-label::after {
-	content: "이미지 선택";
+.my-img label::after {
+	content: "이미지 업로드";
 	position: absolute;
 	top: 0; left: 0;
-	width: 250px; height: 250px;
+	width: 100%; height: 100%;
 	background-color: rgba(0, 0, 0, 0.4);
 	color: white;
 	font-size: 18px;
@@ -73,11 +97,124 @@
 	opacity: 0;
 	transition: opacity 0.3s;
 	border-radius: 50%;
-	margin: 25px;
 }
 
-.image-label:hover::after {
+.my-img label:hover::after {
 	opacity: 1;
 }
 
+.pim {
+	margin: 30px;
+/* 	margin-left: 70px; */
+}
 
+.pim > table {
+	width: 100%;
+/* 	height: 100px; */
+/* 	border: solid 1px black; */
+}
+
+.pim-title {
+	font-size: 1rem;
+/* 	font-family: 'Paperlogy-8ExtraBold'; */
+	display: block;
+/* 	margin-bottom: 5px; */
+}
+
+.pim-content {
+	font-size: 0.8rem;
+	display: block;
+	margin-bottom: 10px;
+	font-family: none;
+}
+
+.chg-myinfo {
+	margin-top: 15px;
+	color: white;
+}
+
+.chg-myinfo button {
+	background-color: #1B9AAA;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+.chg-myinfo button:hover {
+	background-color: #1D2F6F;
+	cursor: pointer;
+}
+
+.pim-content > input {
+	width: 160px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.20);
+	border-radius: 10px;
+}
+
+select {
+	width: 160px;
+	height: 30px;
+	padding: 0 30px 0 10px;
+	border: 1px solid rgba(0, 0, 0, 0.20);
+	border-radius: 10px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-color: white;
+	background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23000' stroke-width='1.5' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 14px;
+	cursor: pointer;
+	outline: none;
+	
+}
+
+select:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: rgba(0, 0, 0, 0.20); /* 포커스 시에도 기존 테두리 유지 */
+}
+
+select option {
+	border: 1px solid rgba(0, 0, 0, 0.20);
+	box-shadow: none;
+	border-radius: 10px;
+}
+
+
+.modifypw {
+	color: white;
+	margin-top: 5px;
+}
+
+.modifypw-btn {
+	background-color: #1B9AAA;
+	width: 160px;
+	height: 30px;
+	border-radius: 10px;
+	font-family: 'PyeojinGothic-Bold';
+}
+
+.modifypw-btn:hover {
+	cursor: pointer;
+	background-color: #1D2F6F;
+}
+
+.modifyinfo {
+	margin-top: 10px;
+	font-size: 0.9rem;
+	color: white;
+}
+
+.modifyinfo-btn {
+	background-color: #1B9AAA;
+	width: 160px;
+	height: 30px;
+	border-radius: 10px;
+}
+
+.modifyinfo-btn:hover {
+	background-color: #1D2F6F;
+	cursor: pointer;
+}
