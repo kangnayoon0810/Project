@@ -22,4 +22,5 @@ public class Member {
 	private String eMail;
 	private String address;
 	private int authLevel;
+	private int profileId;
 }

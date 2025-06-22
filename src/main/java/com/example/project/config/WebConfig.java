@@ -1,4 +1,3 @@
-
 package com.example.project.config;
 
 import org.springframework.beans.factory.annotation.Value;

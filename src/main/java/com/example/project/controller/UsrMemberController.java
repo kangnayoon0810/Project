@@ -13,6 +13,7 @@ import com.example.project.dto.Req;
 import com.example.project.dto.ResultData;
 import com.example.project.service.MemberService;
 import com.example.project.service.ProfileService;
+import com.example.project.service.TrainerInfoService;
 import com.example.project.util.Util;
 
 @Controller
@@ -20,11 +21,13 @@ public class UsrMemberController {
 
 	private MemberService memberService;
 	private ProfileService profileService;
+	private TrainerInfoService trainerInfoService;
 	private Req req;
 
-	public UsrMemberController(MemberService memberService, ProfileService profileService, Req req) {
+	public UsrMemberController(MemberService memberService, ProfileService profileService, TrainerInfoService trainerInfoService, Req req) {
 		this.memberService = memberService;
 		this.profileService = profileService;
+		this.trainerInfoService = trainerInfoService;
 		this.req = req;
 
 	}
@@ -45,9 +48,10 @@ public class UsrMemberController {
 		
 		int memberId = this.memberService.getLastInsertId();
 		
-		this.memberService.insertDefaultProfileImg(memberId);
+		this.profileService.insertDefaultProfileImg(memberId);
 		
 		if (authLevel == 2) {
+			this.trainerInfoService.insertDefaultInfo(memberId);
 			return Util.jsReplace(String.format("[ %s ] 님의 트레이너 가입이 완료되었습니다", nickName), "/");
 		}
 
@@ -125,9 +129,7 @@ public class UsrMemberController {
 			return Util.jsReplace("비밀번호가 일치하지 않습니다", "login");
 		}
 
-		ProfileDto profileDto = this.profileService.getProfileByMemberId(member.getId());
-		
-		this.req.login(new LoginedMember(member.getId(), member.getAuthLevel(), member.getNickName(), member.getEMail(), profileDto.getAddress()));
+		this.req.login(new LoginedMember(member.getId(), member.getAuthLevel(), member.getNickName(), member.getEMail(), member.getAddress()));
 
 		return Util.jsReplace(String.format("[ %s ] 님 환영합니다", member.getNickName()), "/");
 	}

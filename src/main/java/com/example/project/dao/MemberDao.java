@@ -80,17 +80,6 @@ public interface MemberDao {
 			""")
 	int getLastInsertId();
 
-	@Insert("""
-			INSERT INTO `profile`
-			    SET memberId = #{memberId}
-			    , profileImagePath = 'c:/nayoon/upload/default-profile.jpg'
-			    , intro = ''
-			    , address = ''
-			    , tag = ''
-			
-			""")
-	void insertDefaultProfileImg(int memberId);
-
 	@Select("""
 			SELECT *
 				FROM `member`
@@ -103,11 +92,11 @@ public interface MemberDao {
 				SET updateDate = NOW()
 					, nickName = #{nickName}
 					, phoneNumber = #{phoneNumber}
-					, email = #{email}
+					, eMail = #{eMail}
 					, address = #{address}
 				WHERE id = #{id}
 			""")
-	void modifyMember(int id, String nickName, String phoneNumber, String email, String address);
+	void modifyMember(int id, String nickName, String phoneNumber, String eMail, String address);
 
 	@Update("""
 			UPDATE `member`
@@ -123,5 +112,6 @@ public interface MemberDao {
 			 	WHERE authLevel = #{authLevel}
 			""")
 	Member getTrainerById(int authLevel);
+
 
 }

@@ -44,4 +44,8 @@ public class ProfileService {
 	public void modifyInfo(int memberId, String intro) {
 		this.profileDao.modifyInfo(memberId, intro);
 	}
+
+	public void insertDefaultProfileImg(int memberId) {
+		this.profileDao.insertDefaultProfileImg(memberId);
+	}
 }

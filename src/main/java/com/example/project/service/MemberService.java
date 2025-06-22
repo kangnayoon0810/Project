@@ -50,16 +50,12 @@ public class MemberService {
 		return this.memberDao.getLastInsertId();
 	}
 
-	public void insertDefaultProfileImg(int memberId) {
-		this.memberDao.insertDefaultProfileImg(memberId);
-	}
-
 	public Member getMemberById(int id) {
 		return this.memberDao.getMemberById(id);
 	}
 
-	public void modifyMember(int id, String nickName, String phoneNumber, String email, String address) {
-		this.memberDao.modifyMember(id, nickName, phoneNumber, email, address);
+	public void modifyMember(int id, String nickName, String phoneNumber, String eMail, String address) {
+		this.memberDao.modifyMember(id, nickName, phoneNumber, eMail, address);
 	}
 
 	public void modifyPassword(int id, String loginPw) {
@@ -70,4 +66,8 @@ public class MemberService {
 		return this.memberDao.getTrainerById(authLevel);
 	}
 
+	public Member findByUsername(String nickName) {
+		return null;
+	}
+	
 }
